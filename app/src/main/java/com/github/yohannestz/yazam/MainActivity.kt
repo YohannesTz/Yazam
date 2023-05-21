@@ -6,11 +6,11 @@ import android.media.AudioRecord
 import android.media.MediaRecorder
 import android.os.Bundle
 import android.os.Process
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.github.yohannestz.yazam.databinding.ActivityMainBinding
 import com.permissionx.guolindev.PermissionX
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -81,6 +81,7 @@ class MainActivity : AppCompatActivity() {
             }
             record.startRecording()
             while (recordingOn) {
+                // was needed to pass to the buffer.
                 val numberOfShort = record.read(audioBuffer, 0, audioBuffer.size)
                 for (i in audioBuffer.indices) {
                     floatarray[arcounter] = audioBuffer[i].toFloat()
@@ -96,6 +97,7 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "stopped", Toast.LENGTH_SHORT).show()
         recordingOn = false
 
+        Log.e("passedData: ", floatarray.size.toString() + ", " + arcounter.toString())
         val res = passingDataToJni(floatarray, arcounter)
         val textDisplayed = "res:\n\n $res"
         binding.sampleText.text = textDisplayed

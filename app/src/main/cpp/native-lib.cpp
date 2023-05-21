@@ -1,8 +1,8 @@
 #include <jni.h>
 #include <string>
 #include <vector>
-#include <cmath>   /* log10 */
-#import <opencv2/opencv.hpp>
+#include <cmath>
+#include <opencv2/opencv.hpp>
 #include <android/log.h>
 
 using namespace std;
@@ -152,8 +152,9 @@ vector<pair<int, int>> detect_peaks(cv::Mat data) {
 
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_github_yohannestz_yazam_MainActivity_passingDataToJni(JNIEnv *env, jobject instance, jfloatArray floatarray,
-                                             jint intValue) {
+Java_com_github_yohannestz_yazam_MainActivity_passingDataToJni(JNIEnv *env, jobject instance,
+                                                               jfloatArray floatarray,
+                                                               jint intValue) {
     int DEFAULT_WINDOW_SIZE = 4096;
     float DEFAULT_OVERLAP_RATIO = 0.5;
     float FS = 8000.0;
@@ -213,11 +214,3 @@ Java_com_github_yohannestz_yazam_MainActivity_passingDataToJni(JNIEnv *env, jobj
     env->ReleaseFloatArrayElements(floatarray, dataArray, 0);
     return env->NewStringUTF(json.c_str());
 }
-/*
-extern "C"
-JNIEXPORT jstring JNICALL
-Java_com_github_yohannestz_yazam_MainActivity_passingDataToJni(JNIEnv *env, jobject thiz,
-                                                               jfloatArray audio_data,
-                                                               jint array_length) {
-
-}*/

@@ -40,7 +40,9 @@ find_library( # Sets the name of the path variable.
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
 
-set(OpenCV_DIR "/home/jah/Downloads/OpenCV-android-sdk/sdk/native/jni")
+#set(OpenCV_DIR "/home/jah/Downloads/OpenCV-android-sdk/sdk/native/jni")
+#set(OpenCV_DIR "/home/jah/AndroidStudioProjects/Yazam/opencv/native/jni")
+set(OpenCV_DIR "/home/jah/Desktop/Projects/OpenCV-android-sdk/sdk/native/jni")
 find_package(OpenCV REQUIRED)
 message(STATUS "OpenCV libraries: ${OpenCV_LIBS}")
 
